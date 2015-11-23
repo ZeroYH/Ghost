@@ -1,0 +1,8 @@
+pod 'AFNetworking'
+pod 'SDWebImage'
+pod 'ICViewPager'
+pod 'MMDrawerController'
+pod 'AVOSCloud'
+pod 'MJRefresh'
+pod 'SDCycleScrollView'
+pod 'CHTCollectionViewWaterfallLayout'
