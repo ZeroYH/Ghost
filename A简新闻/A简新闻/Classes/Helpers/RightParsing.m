@@ -14,9 +14,12 @@
 
 
 - (void)doRightParsing:(NSString *)url{
-    AFHTTPRequestOperationManager * request = [AFHTTPRequestOperationManager manager];
-    request.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [request GET:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:(NSJSONReadingAllowFragments) error:nil];
         NSMutableArray * modelArray = [NSMutableArray array];
         NSArray * array = dic[@"stream"];
@@ -26,8 +29,7 @@
             [modelArray addObject:model];
         }
         _arrayBlock(modelArray);
-        
-    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error);
     }];
 }

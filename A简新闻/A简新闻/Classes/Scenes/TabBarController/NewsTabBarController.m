@@ -32,7 +32,7 @@
     //新闻项
     HostViewController * newsVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HostView"];
     UINavigationController * newsNC = [[UINavigationController alloc] initWithRootViewController:newsVC];
-     newsNC.navigationBar.barTintColor = [UIColor redColor];
+    newsNC.navigationBar.barTintColor = [UIColor redColor];
     self.newsNC = newsNC;
     // 阅读
     LockMMDViewController * LockVC = [[LockMMDViewController alloc] init];

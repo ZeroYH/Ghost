@@ -11,6 +11,7 @@
 #import "MoreImgTableViewCell.h"
 #import "DataParsing.h"
 #import "SDCycleScrollView.h"
+#import "DataWebViewController.h"
 
 @interface SportsController ()
 
@@ -51,11 +52,15 @@ static NSString * identifier1 = @"cell1";
 - (void)dataPatsEvent{
     DataParsing * datas = [DataParsing new];
     if (self.upOrDownData) {
-        self.urlNumber += 10;
+        if (self.urlNumber < 20) {
+            self.urlNumber += 10;
+        }
     }
     NSString * url = [NSString stringWithFormat:@"%@%d-%d.html",kSports,0,self.urlNumber];
     [datas doDataParsing:url];
-    [datas shufflingDataParsing:url];
+    if (!self.upOrDownData) {
+        [datas shufflingDataParsing:url];
+    }
     __weak typeof(self) temp = self;
     datas.dataPars = ^(NSMutableArray * dataArray){
         temp.array = dataArray;
@@ -107,6 +112,14 @@ static NSString * identifier1 = @"cell1";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 120;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    DataWebViewController * dataWeb = [[DataWebViewController alloc] init];
+    ContentModel * model = self.array[indexPath.row];
+    dataWeb.url = model.url;
+    [self.navigationController pushViewController:dataWeb animated:YES];
+}
+
 
 #pragma mark -- 下拉刷新，上拉加载
 

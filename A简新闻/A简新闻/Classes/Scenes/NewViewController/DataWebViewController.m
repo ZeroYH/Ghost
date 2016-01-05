@@ -53,6 +53,12 @@
 //    [views removeFromSuperview];
 //}
 
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    NSArray *array = @[ @"position lBlue ", @"comment marTop12", @"position lBlue", @"list marTop12", @"list marTop12", @"list marTop12", @"cnav marTop12 lBlue", @"foot"];
+    for (int i = 0; i < array.count; i++) {
+        [self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementsByClassName('%@')[0].style.display = 'none'", array[i]]];
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

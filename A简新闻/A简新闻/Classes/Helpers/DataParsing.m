@@ -7,7 +7,7 @@
 //
 
 #import "DataParsing.h"
-#import "AFNetworking.h"
+
 #import "ContentModel.h"
 #import "ScrollModel.h"
 
@@ -17,11 +17,12 @@
 - (void)doDataParsing:(NSString *)url{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         // 1.创建AFHTTPRequestOperationManager ---HTTP请求操作管理类的对象
-        AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
+        AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
         // 2.发送get请求
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-        //
-        [manager GET:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        [manager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+            NSLog(@"%@",downloadProgress);
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             // 用字典来承接数据
             NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
             NSMutableArray * muArray = [NSMutableArray array];
@@ -29,6 +30,10 @@
             for (NSString * str in keyArray) {
                 NSArray * array = dic[str];
                 for (NSDictionary * dicy in array) {
+                    NSArray *arrays = dicy[@"imgextra"];
+                    if (arrays.count != 0) {
+                        continue;
+                    }
                     ContentModel * content = [ContentModel new];
                     [content setValuesForKeysWithDictionary:dicy];
                     [muArray addObject:content];
@@ -39,7 +44,7 @@
             }else {
                 self.dataPars(muArray);
             }
-        } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSLog(@"%@",error);
         }];
     });
@@ -47,9 +52,11 @@
 
 // 解析轮播图
 - (void)shufflingDataParsing:(NSString *)url{
-    AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer  serializer];
-    [manager GET:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [manager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:(NSJSONReadingAllowFragments) error:nil];
         // 用于承接取到的轮播图
         NSMutableArray * imgMuArray = [NSMutableArray array];
@@ -99,14 +106,9 @@
         }else{
             self.imgData(imgMuArray);
         }
-    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+         NSLog(@"%@",error);
     }];
 }
-
-
-
-
-
 
 @end

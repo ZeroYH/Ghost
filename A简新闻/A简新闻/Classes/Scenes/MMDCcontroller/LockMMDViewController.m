@@ -20,7 +20,7 @@
 @implementation LockMMDViewController
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"看看" image:[UIImage imageNamed:@"cinema"] tag:1002];
+        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"看看" image:[[UIImage imageNamed:@"iconfont-yixihuan.png"] imageWithRenderingMode:(UIImageRenderingModeAlwaysOriginal) ]  tag:1002];
         
     }
     return self;

@@ -35,12 +35,15 @@ static NSString * identifier = @"cell";
     [self.mm_drawerController toggleDrawerSide:(MMDrawerSideLeft) animated:YES completion:nil];
     
 }
-
+- (void)backEvent:(UIBarButtonItem *)sender{
+    [self.mm_drawerController toggleDrawerSide:(MMDrawerSideRight) animated:YES completion:nil];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self showView];
     self.tableView.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1];
     self.ste = 10;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"逛街" style:(UIBarButtonItemStylePlain) target:self action:@selector(backEvent:)];
     // 注册
     [self.tableView registerNib:[UINib nibWithNibName:@"VideoCell" bundle:nil] forCellReuseIdentifier:identifier];
     [self videoParsingEvent];

@@ -73,11 +73,16 @@ static NSString * identifier2 = @"moreCell";
 - (void)dataPatsEvent{
     DataParsing * datas = [DataParsing new];
     if (self.upOrDownData) {
-        self.urlNumber += 10;
+        if (self.urlNumber < 20) {
+            self.urlNumber += 10;
+        }
     }
     NSString * url = [NSString stringWithFormat:@"%@%d-%d.html",kTopURL,0,self.urlNumber];
     [datas doDataParsing:url];
-    [datas shufflingDataParsing:url];
+    if (!self.upOrDownData) {
+        [datas shufflingDataParsing:url];
+    }
+    
     __weak typeof(self) temp = self;
     datas.dataPars = ^(NSMutableArray * dataArray){
         temp.array = dataArray;
@@ -185,7 +190,7 @@ static NSString * identifier2 = @"moreCell";
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         self.upOrDownData = YES;
         [temp dataPatsEvent];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (ino64_t)(3 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (ino64_t)(2 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             // 停止刷新
             [temp.tableView.mj_footer endRefreshing];
             self.upOrDownData = NO;

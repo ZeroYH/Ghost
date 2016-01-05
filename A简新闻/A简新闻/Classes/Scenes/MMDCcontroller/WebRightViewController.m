@@ -21,9 +21,9 @@
     self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, -54, self.view.bounds.size.width, self.view.bounds.size.height + 54)];
     self.webView.scrollView.bounces = NO;
     // 内容填充
-    _webView.scalesPageToFit = YES;
+    self.webView.scalesPageToFit = YES;
     // 添加代理
-    _webView.delegate = self;
+    self.webView.delegate = self;
     // 添加到视图上
     [self.view addSubview:_webView];
     
@@ -36,6 +36,9 @@
 - (void)backEvent:(UIBarButtonItem *)sender{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

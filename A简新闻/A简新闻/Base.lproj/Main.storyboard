@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="E3E-cp-Kj2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="E3E-cp-Kj2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -205,7 +205,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="12.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="zhK-Wl-xIu">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="k.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="zhK-Wl-xIu">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <animations/>
                             </imageView>
@@ -219,9 +219,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="815-0J-kLa">
                                         <rect key="frame" x="16" y="259" width="43" height="36"/>
                                         <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                         <state key="normal" title="登入">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" red="0.35091185287887444" green="0.9395656086387435" blue="0.1060545982763508" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="action4Login:" destination="S3K-8g-fGp" eventType="touchUpInside" id="EYc-1n-8kc"/>
@@ -230,9 +230,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sbk-Zd-MwM">
                                         <rect key="frame" x="180" y="259" width="43" height="36"/>
                                         <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                         <state key="normal" title="注销">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" red="0.37498296336433806" green="0.84546793193717273" blue="0.19525862614524031" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="cancelAction:" destination="S3K-8g-fGp" eventType="touchUpInside" id="i49-US-oTZ"/>
@@ -252,27 +252,36 @@
                                 </variation>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lw-Ct-xVb">
-                                <rect key="frame" x="57" y="399" width="60" height="30"/>
+                                <rect key="frame" x="57" y="399" width="66" height="30"/>
                                 <animations/>
-                                <state key="normal" title="清除缓存"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
+                                <state key="normal" title="清除缓存">
+                                    <color key="titleColor" red="0.96475622934559668" green="1" blue="0.1192921455825825" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="action4Collection:" destination="S3K-8g-fGp" eventType="touchUpInside" id="KPm-Bv-tXi"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rmL-vT-80I">
-                                <rect key="frame" x="57" y="472" width="60" height="30"/>
-                                <animations/>
-                                <state key="normal" title="个人详情"/>
-                                <connections>
-                                    <action selector="action4Per:" destination="S3K-8g-fGp" eventType="touchUpInside" id="HQ5-78-ldZ"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3TU-Sm-eZt">
-                                <rect key="frame" x="57" y="339" width="90" height="30"/>
+                                <rect key="frame" x="57" y="339" width="101" height="30"/>
                                 <animations/>
-                                <state key="normal" title="上次页面统计"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
+                                <state key="normal" title="上次页面统计">
+                                    <color key="titleColor" red="0.95499047858723574" green="1" blue="0.012949745208634789" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="action4Focus:" destination="S3K-8g-fGp" eventType="touchUpInside" id="lAX-eY-SPy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rmL-vT-80I">
+                                <rect key="frame" x="57" y="472" width="66" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
+                                <state key="normal" title="个人详情">
+                                    <color key="titleColor" red="0.91111659992372718" green="1" blue="0.1797040937029375" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="action4Per:" destination="S3K-8g-fGp" eventType="touchUpInside" id="HQ5-78-ldZ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -530,7 +539,7 @@
             </objects>
             <point key="canvasLocation" x="-1118.5" y="503.5"/>
         </scene>
-        <!--Host View Controller-->
+        <!--新闻-->
         <scene sceneID="VaL-j3-HjS">
             <objects>
                 <viewController storyboardIdentifier="HostView" id="rpU-Do-wCa" customClass="HostViewController" sceneMemberID="viewController">
@@ -544,7 +553,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="dEC-fL-i5A">
+                    <navigationItem key="navigationItem" title="新闻" id="dEC-fL-i5A">
                         <barButtonItem key="leftBarButtonItem" image="menu.png" id="mXI-gd-ElT">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -626,10 +635,14 @@
                                 <animations/>
                                 <color key="backgroundColor" red="0.23803603649139404" green="0.98039919137954712" blue="0.22090187668800354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xMw-fo-yDl">
-                                <rect key="frame" x="20" y="36" width="75" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xMw-fo-yDl">
+                                <rect key="frame" x="20" y="36" width="90" height="30"/>
                                 <animations/>
-                                <state key="normal" title="返回新闻页"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" title="返回新闻页">
+                                    <color key="titleColor" red="0.055477570684440931" green="0.71682755235602102" blue="0.11478195910819458" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.35091185289999999" green="0.93956560860000005" blue="0.1060545983" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="btn:" destination="4pz-Lg-Z14" eventType="touchUpInside" id="3h8-Sq-OuY"/>
                                 </connections>
@@ -676,7 +689,7 @@
             </objects>
             <point key="canvasLocation" x="543.5" y="96.5"/>
         </scene>
-        <!--LockMMD View Controller-->
+        <!--看看-->
         <scene sceneID="vmD-z8-UTM">
             <objects>
                 <viewController storyboardIdentifier="LockMMD" id="pje-3r-yhr" customClass="LockMMDViewController" sceneMemberID="viewController">
@@ -690,7 +703,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="2wu-kU-ZwL"/>
+                    <navigationItem key="navigationItem" title="看看" id="2wu-kU-ZwL"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DjN-fs-hO6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -752,10 +765,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="12.jpg" width="676" height="561"/>
         <image name="btn_nav_back.png" width="24" height="19"/>
         <image name="e.png" width="1242" height="2208"/>
         <image name="headImg.png" width="80" height="80"/>
+        <image name="k.jpg" width="1024" height="576"/>
         <image name="menu.png" width="44" height="44"/>
     </resources>
 </document>

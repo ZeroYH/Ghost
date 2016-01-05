@@ -13,6 +13,7 @@
 #import "SDCycleScrollView.h"
 #import "ContentModel.h"
 #import "Userset+CoreDataProperties.h"
+#import "DataWebViewController.h"
 
 @interface MilitaryController ()
 @property (nonatomic, strong) NSMutableArray * dataArray;
@@ -49,13 +50,15 @@ static NSString * identifier1 = @"cell1";
 
 // 下拉刷新，上拉加载
 - (void)dataParsingEvent{
-    if (self.temp) {
+    if (!self.temp) {
         // 加载
-        self.ste += 10;
+        if (self.ste < 20) {
+            self.ste += 10;
+        }
         [self dataParsing];
     } else {
         // 刷新
-        [self dataParsing];
+        //[self dataParsing];
         [self shuffingParsing];
     }
 }
@@ -118,6 +121,13 @@ static NSString * identifier1 = @"cell1";
     return 120;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    DataWebViewController * dataWeb = [[DataWebViewController alloc] init];
+    ContentModel * model = self.dataArray[indexPath.row];
+    dataWeb.url = model.url;
+    [self.navigationController pushViewController:dataWeb animated:YES];
+}
+
 #pragma mark -- 上拉加载,下拉刷新
 - (void)upDataEvent{
    MJRefreshNormalHeader * header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(updateNewData:)];
@@ -130,8 +140,11 @@ static NSString * identifier1 = @"cell1";
 }
 
 - (void)updateNewData:(MJRefreshNormalHeader *)sender{
+    self.temp = YES;
     [self dataParsingEvent];
+    __weak typeof(self) temp = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (ino64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        temp.temp = NO;
         // 停止刷新
         [sender endRefreshing];
         // 刷新view
@@ -140,14 +153,14 @@ static NSString * identifier1 = @"cell1";
 }
 
 - (void)downDataEvent{
-    self.temp = YES;
+    
     __weak typeof(self) temp = self;
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [temp dataParsingEvent];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [temp.tableView.mj_footer endRefreshing];
             [temp.tableView reloadData];
-            temp.temp = NO;
+            
         });
     }];
 }

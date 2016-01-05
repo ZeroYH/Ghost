@@ -20,5 +20,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import <UIViewController+MMDrawerController.h>
 #import "FMDB.h"
+#import "AFNetworking.h"
 
 #endif /* PrefixHeader_pch */
