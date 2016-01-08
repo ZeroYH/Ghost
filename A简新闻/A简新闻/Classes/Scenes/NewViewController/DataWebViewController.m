@@ -13,6 +13,9 @@
 // webView
 @property (nonatomic, strong) UIWebView * webView;
 
+@property (nonatomic, strong) UIActivityIndicatorView * activityView;
+
+@property (nonatomic, strong) UIView * backView;
 @end
 
 @implementation DataWebViewController
@@ -35,29 +38,36 @@
     // 请求链接
     [self.webView loadRequest:request];
     
+    self.backView = [[UIView alloc] initWithFrame:self.view.frame];
+    _backView.backgroundColor = [UIColor grayColor];
+    [self.view addSubview:_backView];
+    
+    self.activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+    _activityView.center = self.view.center;
+    _activityView.color = [UIColor redColor];
+    [self.view addSubview:_activityView];
+    
 }
 #pragma mark -- UIWebViewDelegate
-//// 开始加载
-//- (void)webViewDidStartLoad:(UIWebView *)webView{
-//    // 加载是的黑色背景
-//    UIView * backView = [[UIView alloc] initWithFrame:self.view.frame];
-//    backView.backgroundColor = [UIColor blackColor];
-//    backView.alpha = 0.6;
-//    backView.tag = 1001;
-//    [self.view addSubview:backView];
-//}
-//// 加载结束
-//- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
-//    // 加载完成后删除背景
-//    UIView * views = [self.view viewWithTag:1001];
-//    [views removeFromSuperview];
-//}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+    [self.activityView  startAnimating];
+}
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
-    NSArray *array = @[ @"position lBlue ", @"comment marTop12", @"position lBlue", @"list marTop12", @"list marTop12", @"list marTop12", @"cnav marTop12 lBlue", @"foot"];
+    
+    
+    
+    NSArray *array = @[@"a_topad js-topad", @"article_source js-source", @"more_client more-client", @"h5share_panel", @"a_topad js-tbad", @"article_comment", @"article_ad", @"content-list",@"list-more", @"feed_back"];
     for (int i = 0; i < array.count; i++) {
         [self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementsByClassName('%@')[0].style.display = 'none'", array[i]]];
     }
+    [self.webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('footer')[0].style.display = 'none'"];
+    
+    
+    [self.activityView  stopAnimating];
+    [self.activityView hidesWhenStopped];
+    [self.backView removeFromSuperview];
 }
 
 - (void)didReceiveMemoryWarning {

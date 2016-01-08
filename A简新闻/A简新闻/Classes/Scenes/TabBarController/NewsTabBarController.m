@@ -23,16 +23,21 @@
 
 @implementation NewsTabBarController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 //
-    self.tabBar.barTintColor = [UIColor redColor];
+    self.tabBar.barTintColor = [UIColor whiteColor];
     self.tabBar.barStyle = UIBarStyleBlackOpaque;
     self.tabBar.tintColor = [UIColor blackColor];
+    
+   
+    
     //新闻项
     HostViewController * newsVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HostView"];
     UINavigationController * newsNC = [[UINavigationController alloc] initWithRootViewController:newsVC];
-    newsNC.navigationBar.barTintColor = [UIColor redColor];
+    newsNC.navigationBar.barTintColor = [UIColor whiteColor];
+    
     self.newsNC = newsNC;
     // 阅读
     LockMMDViewController * LockVC = [[LockMMDViewController alloc] init];
@@ -63,6 +68,8 @@
     
         }
     }
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{

@@ -71,7 +71,7 @@
 // 图片存入本地
 - (void)saveImage:(UIImage *)img{
     AVUser * user = [AVUser currentUser];
-    if ([[Fmdata fmdata] selectColorAndImgDataBase:user.username] == nil) {
+    if (UIImagePNGRepresentation([[Fmdata fmdata] selectColorAndImgDataBase:user.username]) == nil) {
         [[Fmdata fmdata] addImgDataBase:user.username img:img];
     } else {
         [[Fmdata fmdata] updateColorAndImgDataBase:user.username andImg:img];

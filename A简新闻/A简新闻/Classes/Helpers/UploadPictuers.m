@@ -64,8 +64,9 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     // 修改后的图片
     self.image = [info objectForKey:UIImagePickerControllerEditedImage];
-    NSLog(@"%@",self.image);
+    NSLog(@"aaaaa%@",self.image);
     self.str = [NSString stringWithFormat:@"%@%@",[self generateUidString],@".png"];
+    
     self.block(self.image);
     [_pick dismissViewControllerAnimated:YES completion:nil];
     
@@ -74,6 +75,7 @@
 
 // 返回image
 - (UIImage *)imagePickerUploadPictuers{
+    NSLog(@"xxxxxx%@", self.image);
     return self.image;
 }
 // 返回name

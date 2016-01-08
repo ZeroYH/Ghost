@@ -21,7 +21,7 @@
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"看看" image:[[UIImage imageNamed:@"iconfont-yixihuan.png"] imageWithRenderingMode:(UIImageRenderingModeAlwaysOriginal) ]  tag:1002];
-        
+        [self.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor],NSFontAttributeName:[UIFont systemFontOfSize:13 weight:15]} forState:(UIControlStateNormal)];
     }
     return self;
 }
@@ -38,7 +38,7 @@
     
     // 添加navigation
      self.LockNC = [[UINavigationController alloc] initWithRootViewController:lockTVC];
-    self.LockNC.navigationBar.barTintColor = [UIColor redColor];
+    self.LockNC.navigationBar.barTintColor = [UIColor whiteColor];
     // 添加 主视图与右视图
     self.centerViewController = _LockNC;
     self.rightDrawerViewController = right;

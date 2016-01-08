@@ -39,6 +39,7 @@ static NSString * identifier2 = @"moreCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"%@",[AVUser currentUser].username);
     self.urlNumber = 10;
     self.tableView.backgroundColor = [UIColor cyanColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

@@ -53,6 +53,8 @@
     self.array = @[@"头条",@"军事",@"体育",@"时尚",@"游戏"];
     self.view.backgroundColor = [UIColor whiteColor];
     self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"新闻" image:[UIImage imageNamed:@"cinema"] tag:1001];
+    [self.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:13 weight:15]} forState:(UIControlStateNormal)];
+    
     self.arrayController = @[top1, top2, top3, top4, top5];
 }
 

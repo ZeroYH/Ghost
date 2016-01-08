@@ -37,6 +37,7 @@ static Fmdata * dataBase = nil;
     }];
 }
 - (void)addImgDataBase:(NSString *)user img:(UIImage *) img{
+    [self openData];
     [self.queue inDatabase:^(FMDatabase *db) {
         NSData * data = UIImagePNGRepresentation(img);
         [db executeUpdate:@"insert into Use (user, img) values(?, ?)", user,data];
@@ -44,6 +45,7 @@ static Fmdata * dataBase = nil;
 }
 
 - (void)updateColorAndImgDataBase:(NSString *)user andImg:(UIImage *)img{
+    [self openData];
     [self.queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
         NSData * data = UIImagePNGRepresentation(img);
         [db executeUpdate:@"update Use set img = ? where user = ?",data, user];
@@ -51,9 +53,10 @@ static Fmdata * dataBase = nil;
 }
 
 - (UIImage *)selectColorAndImgDataBase:(NSString *)user{
+    [self openData];
     __block UIImage * imgs = [[UIImage alloc] init];
     [self.queue inDatabase:^(FMDatabase *db) {
-        FMResultSet * rb = [db executeQuery:@"select * from Use where user = ?;",user];
+        FMResultSet * rb = [db executeQuery:@"select * from Use where user = ?",user];
         while (rb.next) {
             imgs = [UIImage imageWithData:[rb dataForColumn:@"img"]];
         }
